@@ -20,16 +20,25 @@
      ![key-value](../../images/key-value.PNG)
        
 ## Install ETCD
+  ### Older versions of ETCD use the verb "set" for write operations, while newer versions use "put"
+  In the examples below, for the old version use
+    ```
+    ETCD_VERSION=v3.3.11 
+    ```
+  and for the new version use
+    ```
+    ETCD_VERSION=v3.5.2 
+    ```
    - Its easy to install and get started with **`ETCD`**.
      - Download the relevant binary for your operating system from github releases page (https://github.com/etcd-io/etcd/releases)
        ```
-       For Example: To download ETCD V3.3.11, run the below curl command
+       For Example: To download ETCD ${ETCD_VERSION}, run the below curl command
          
-       $ https://github.com/etcd-io/etcd/releases/download/v3.3.11/etcd-v3.3.11-linux-amd64.tar.gz
+       $ https://github.com/etcd-io/etcd/releases/download/${ETCD_VERSION}/etcd-${ETCD_VERSION}-linux-amd64.tar.gz
        ```
      - Extract it.
        ```
-       $ tar xvzf etcd-v3.3.11-linux-amd64.tar.gz 
+       $ tar xvzf etcd-${ETCD_VERSION}-linux-amd64.tar.gz 
        ```
      - Run the ETCD Service
        ```
@@ -39,7 +48,11 @@
       - The default client that comes with **`ETCD`** is the [**`etcdctl`**](https://github.com/etcd-io/etcd/tree/main/etcdctl) client. You can use it to store and retrieve key-value pairs.
         ```
         Syntax: To Store a Key-Value pair
-        $ ./etcdctl set key1 value1
+        $ ./etcdctl set key1 value1 # older syntax
+        ```
+        or
+        ```
+        $ ./etcdctl put key1 value1 # newer syntax
         ```
         ```
         Syntax: To retrieve the stored data
